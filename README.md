@@ -35,16 +35,8 @@ npm install pm2@latest -g
 ```sh
 pm2 start /path/to/server.js
 ```
-Socket will now be available on http://localhost:3333/
-
-## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-make install
-npm test
-```
+Socket will now be available on http://localhost:3333/ 
+and an open method to dial the AT command to the modem will be exposed.
 
 ## Release History
 * 1.0.0
