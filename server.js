@@ -9,7 +9,6 @@ const middleware    = require('socketio-wildcard')();
 const kermit        = spawn('kermit' ,[__dirname + '/opendoor.sh'] );
 const port          = process.argv[2] || 3333;
 
-
 let opening         = false;
 
 kermit.stdout.on('data', (data) => {
