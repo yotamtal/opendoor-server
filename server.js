@@ -85,7 +85,7 @@ io.on('connection', (socket) => {
                     obj.allowed.push(uuid);
                     json = JSON.stringify(obj);
                     socket.emit('added', { uuid: uuid })
-                    fs.writeFile(__dirname + '/devices.json', json, 'utf8', (e) => e === null && console.log('Added a new device')); 
+                    fs.writeFile(__dirname + './devices.json', json, 'utf8', (e) => e === null && console.log('Added a new device')); 
                 }
 
                 /***
