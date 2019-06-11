@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
              * Get allowed devices UUID from stored JSON
              */
             try {
-                let obj = JSON.parse(fs.readFileSync('./devices.json', 'utf-8'))
+                let obj = JSON.parse(fs.readFileSync(__dirname + '/devices.json', 'utf-8'))
                 /***
                  * If device connected from home
                  * and not listed in allowed JSON
@@ -85,7 +85,7 @@ io.on('connection', (socket) => {
                     obj.allowed.push(uuid);
                     json = JSON.stringify(obj);
                     socket.emit('added', { uuid: uuid })
-                    fs.writeFile(__dirname + './devices.json', json, 'utf8', (e) => e === null && console.log('Added a new device')); 
+                    fs.writeFile(__dirname + '/devices.json', json, 'utf8', (e) => e === null && console.log('Added a new device')); 
                 }
 
                 /***
@@ -124,6 +124,7 @@ io.on('connection', (socket) => {
             } catch (err) {
                 console.log(err)
                 console.log('JSON read error!');
+                socket.emit('denied', { uuid: uuid })
             }
                 
         } 
