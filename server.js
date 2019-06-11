@@ -1,5 +1,5 @@
 
-const app           = require('http').createServer(server_config);
+const http           = require('http');
 const path          = require('path');
 const url           = require('url');
 const fs            = require('fs');
@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
      * Get connected client IP adress
      */
     let clientIPV4 = socket.handshake.address.split('::ffff:')[1];
-    
+
     // console.log(clientIPV4 + ' connected');
     // socket.on('disconnect', () => console.log(clientIPV4 + ' disconnected') );
 
@@ -138,5 +138,6 @@ io.on('connection', (socket) => {
 });
 
 console.log(' [*] Listening' );
+app = http.createServer(server_config);
 app.listen(port);
 
