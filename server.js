@@ -122,6 +122,7 @@ io.on('connection', (socket) => {
                 else socket.emit('denied', { uuid: uuid })
 
             } catch (err) {
+                console.log(err)
                 console.log('JSON read error!');
             }
                 
