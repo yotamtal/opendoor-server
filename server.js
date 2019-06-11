@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
              * Get allowed devices UUID from stored JSON
              */
             try {
-                let obj = JSON.parse(fs.readFileSync('/devices.json', 'utf-8'))
+                let obj = JSON.parse(fs.readFileSync('./devices.json', 'utf-8'))
                 /***
                  * If device connected from home
                  * and not listed in allowed JSON
