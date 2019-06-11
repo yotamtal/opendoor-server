@@ -1,10 +1,10 @@
 
-const http           = require('http');
+const http          = require('http');
 const path          = require('path');
 const url           = require('url');
 const fs            = require('fs');
 const spawn         = require('child_process').spawn;
-const io            = require('socket.io')(app);
+const socketIO      = require('socket.io');
 const middleware    = require('socketio-wildcard')();
 const kermit        = spawn('kermit' ,[__dirname + '/opendoor.sh'] );
 const port          = process.argv[2] || 3333;
@@ -34,13 +34,15 @@ kermit.stdout.on('data', (data) => {
     }
 });
 
-io.on('error', (e) => console.log(e) );
-
 let server_config = (req, res) => {
     res.statusCode = 400;
     res.end(`Nothing to do here.`);
 }
 
+app = http.createServer(server_config);
+io = socketIO(app);
+
+io.on('error', (e) => console.log(e) );
 io.use(middleware);
 io.on('connection', (socket) => {
 
@@ -138,6 +140,5 @@ io.on('connection', (socket) => {
 });
 
 console.log(' [*] Listening' );
-app = http.createServer(server_config);
 app.listen(port);
 
